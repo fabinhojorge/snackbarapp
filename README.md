@@ -15,4 +15,4 @@ Also, the user (_Client_) can construct his own snack/amburguer, and the system 
 
 
 # To Do
-[ ] _Still planing :)_
+[ ] ...
