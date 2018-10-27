@@ -63,7 +63,7 @@ ROOT_URLCONF = 'snackbarapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,3 +127,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
+# Email
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = "Name <test@test.com>"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
+EMAIL_HOST = "localhost"
+# EMAIL_HOST_USER = "user"
+# EMAIL_HOST_PASSWORD = "pass"
+EMAIL_PORT = 1025
+
+CONTACT_EMAIL = "contact@test.com"
