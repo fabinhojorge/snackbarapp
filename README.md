@@ -1,4 +1,4 @@
-# Snack Bar App
+# Snack Bar App [![CircleCI](https://circleci.com/gh/fabinhojorge/snackbarapp.svg?style=svg)](https://circleci.com/gh/fabinhojorge/snackbarapp)
 A simple project with a real business case to practice Django knowledge 
 
 
