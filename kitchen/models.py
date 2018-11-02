@@ -10,3 +10,13 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Product(models.Model):
+    name = models.CharField("Product Name", max_length=150, blank=True)
+    create_date = models.DateTimeField(auto_now=True)
+    update_date = models.DateTimeField(auto_now_add=True)
+    ingredients = models.ManyToManyField(Ingredient)
+
+    def __str__(self):
+        return "Product {0:05d} {1} ".format(self.id, self.name)
