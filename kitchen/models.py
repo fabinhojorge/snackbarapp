@@ -16,7 +16,16 @@ class Product(models.Model):
     name = models.CharField("Product Name", max_length=150, blank=True)
     create_date = models.DateTimeField(auto_now=True)
     update_date = models.DateTimeField(auto_now_add=True)
-    ingredients = models.ManyToManyField(Ingredient)
+    ingredients = models.ManyToManyField(Ingredient, through='ProductIngredient')
 
     def __str__(self):
         return "Product {0:05d} {1} ".format(self.id, self.name)
+
+
+class ProductIngredient(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    amount = models.DecimalField("Amount", max_digits=2, decimal_places=0)
+
+    def __str__(self):
+        return "{0} - {1}".format(self.product, self.ingredient)

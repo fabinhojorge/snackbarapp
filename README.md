@@ -17,11 +17,13 @@ As a start, you can use the below list of ingredients and theirs respective pric
 
 | Ingredient | Price |
 |:----------:|-------|
-|Lettuce(_Alface_)| _R$0.40_|
-|Bacon| _R$2.00_|
-|Hamburger of Meat| _R$3.00_|
-|Egg| _R$0.80_|
-|Cheese| _R$1.50_|
+|Bread| _R$2.50_|
+|Hamburger of Meat| _R$5.00_|
+|Lettuce(_Alface_)| _R$0.80_|
+|Bacon| _R$3.00_|
+|Egg| _R$1.20_|
+|Tomato|_R$1.20_|
+|Cheese| _R$2.50_|
 
 To Calculate a Product´s price, you only needed to __sum all the ingredients prices__.
 But, there are some __special__ conditions that can change the final price. It´s when the Product belongs to a Promotion. Take a look in the special rules below:
