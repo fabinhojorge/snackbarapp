@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from kitchen.views import index
+from kitchen.views import index, createsnack
 
 
 urlpatterns = [
     path('', index, name='kitchen_index'),
+    path('createsnack', createsnack, name='kitchen_create_snack'),
 ]

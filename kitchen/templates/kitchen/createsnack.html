@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tag_utils %}
+{% load widget_tweaks %}
+
+
+{% block title %} Snackbar | Create your Own Snack! {% endblock %}
+
+{% block extrahead %} {% endblock %}
+
+{% block extrastyle %} {% endblock %}
+
+{% block extrascript %} {% endblock %}
+
+{% block breadcrumbs %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="col-md-9 col-lg-6" id="createsnack_form">
+    <form action="#createsnack_form" method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend>Create your Own Snack</legend>
+            {% if createsnack_form_is_valid %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Snack created with Success! Now wait for the Order :)
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            {% endif %}
+
+            {% for field in snack_form %}
+            <div class="form-group">
+                {% if not field.errors%}
+                <label class="form-control-label">{{ field.label }}</label>
+                {{ field|add_class:"form-control" }}
+                {% else %}
+                <label class="form-control-label text-danger">{{ field.label }}</label>
+                {{ field|add_class:"form-control is-invalid" }}
+                {% for error in field.errors %}
+                <span class="badge badge-danger"> {{ error }} </span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+</div>
+
+
+{% endblock %}
