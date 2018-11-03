@@ -21,6 +21,10 @@ class Product(models.Model):
     def __str__(self):
         return "Product {0:05d} {1} ".format(self.id, self.name)
 
+    def get_product_price(self):
+        ings = self.productingredient_set.all()
+        return sum([i.get_ingredient_price() for i in ings])
+
 
 class ProductIngredient(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

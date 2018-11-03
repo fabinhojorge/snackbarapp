@@ -19,7 +19,28 @@
 
 {% block content %}
 
-<h1> Index </h1>
+<h1> Home</h1>
 
+
+<h3>Actions:</h3>
+<ul>
+    <li><a href="#">New Ingredient (Owner)</a></li>
+    <li><a href="#">Create your Snack (Customer)</a></li>
+</ul>
+
+<h3>List of requested snacks</h3>
+
+{% for snack in snacks %}
+    <h4>{{ snack.name }}</h4>
+    <ul>
+        {% for ing in snack.productingredient_set.all%}
+        <li>{{ing.amount}}x {{ ing.ingredient }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total: R${{snack.get_product_price}}</p>
+
+{% empty %}
+<p>- EMPTY -</p>
+{% endfor %}
 
 {% endblock %}
