@@ -29,3 +29,6 @@ class ProductIngredient(models.Model):
 
     def __str__(self):
         return "{0} - {1}".format(self.product, self.ingredient)
+
+    def get_ingredient_price(self):
+        return float(self.amount) * float(self.ingredient.price)
