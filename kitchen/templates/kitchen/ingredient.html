@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load tag_utils %}
+
+
+{% block title %} Ingredient! {% endblock %}
+
+{% block extrahead %} {% endblock %}
+
+{% block extrastyle %} {% endblock %}
+
+{% block extrascript %} {% endblock %}
+
+{% block breadcrumbs %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1> Ingredients</h1>
+
+<h3>Register a New Ingredient</h3>
+<p>[FORM INGREDIENT]</p>
+
+<h3>List of Ingredients</h3>
+<ul>
+{% for ing in ingredients%}
+    <li>{{ing}} <span>[Update]</span> <span>[Delete]</span></li>
+{% empty %}
+    <li>-EMPTY-</li>
+{% endfor %}
+</ul>
+{% endblock %}

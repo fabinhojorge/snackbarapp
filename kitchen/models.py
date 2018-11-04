@@ -11,6 +11,9 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        pass
+
 
 class Product(models.Model):
     name = models.CharField("Product Name", max_length=150, blank=True)
