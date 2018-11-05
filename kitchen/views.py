@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from kitchen.models import Product
-from kitchen.form import ProductIngredientForm, ProductForm, Ingredient
+from kitchen.models import Product, Ingredient, ProductIngredient
+from kitchen.form import ProductIngredientForm, ProductForm, IngredientForm
 
 
 def index(request):
@@ -11,7 +11,16 @@ def index(request):
 
 def ingredient(request):
     data = dict()
-    data['ingredients'] = Ingredient.objects.all()
+    form_ingredient = IngredientForm(request.POST or None)
+
+    if form_ingredient.is_valid():
+        # form_ingredient.save()
+        # form_ingredient = IngredientForm()
+        data['ingredient_saved'] = True
+        pass
+
+    data['ingredient_form'] = form_ingredient
+    data['ingredients'] = Ingredient.objects.all().order_by('-id')
     return render(request, 'kitchen/ingredient.html', data)
 
 

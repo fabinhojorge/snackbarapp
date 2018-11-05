@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load tag_utils %}
+{% load widget_tweaks %}
 
 
 {% block title %} Ingredient! {% endblock %}
@@ -16,20 +17,52 @@
 {% endblock %}
 
 
-
 {% block content %}
 
 <h1> Ingredients</h1>
 
-<h3>Register a New Ingredient</h3>
-<p>[FORM INGREDIENT]</p>
+
+<div class="col-md-9 col-lg-6" id="ingredient_form">
+    <form action="#ingredient_form" method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend>Register a new Ingredient</legend>
+            {% if ingredient_saved %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Ingredient saved with Success. Check in the below list
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            {% endif %}
+
+            {% for field in ingredient_form %}
+            <div class="form-group row">
+                {% if not field.errors%}
+                <label class="form-control-label col-md-2">{{ field.label }}</label>
+                {{ field|add_class:"form-control col-md-10" }}
+                {% else %}
+                <label class="form-control-label col-md-2 text-danger">{{ field.label }}</label>
+                {{ field|add_class:"form-control col-md-10 is-invalid" }}
+                {% for error in field.errors %}
+                <span class="badge badge-danger"> {{ error }} </span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+</div>
+
 
 <h3>List of Ingredients</h3>
 <ul>
-{% for ing in ingredients%}
-    <li>{{ing}} <span>[Update]</span> <span>[Delete]</span></li>
-{% empty %}
+    {% for ing in ingredients%}
+    <li>{{ing.id}} - {{ing.name}}</li>
+    {% empty %}
     <li>-EMPTY-</li>
-{% endfor %}
+    {% endfor %}
 </ul>
 {% endblock %}
