@@ -14,8 +14,8 @@ def ingredient(request):
     form_ingredient = IngredientForm(request.POST or None)
 
     if form_ingredient.is_valid():
-        # form_ingredient.save()
-        # form_ingredient = IngredientForm()
+        form_ingredient.save()
+        form_ingredient = IngredientForm()
         data['ingredient_saved'] = True
         pass
 
