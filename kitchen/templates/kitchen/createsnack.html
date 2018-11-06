@@ -13,7 +13,7 @@
 {% block extrascript %} {% endblock %}
 
 {% block breadcrumbs %}
-
+    {% breadcrumb_url 'Home' 'kitchen_index' 'Create your Own Snack'%}
 {% endblock %}
 
 
@@ -49,6 +49,7 @@
             </div>
             {% endfor %}
 
+            <div id="ing_form">
             {% for field in snack_form %}
             <div class="form-group">
                 {% if not field.errors%}
@@ -63,6 +64,7 @@
                 {% endif %}
             </div>
             {% endfor %}
+            </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </fieldset>

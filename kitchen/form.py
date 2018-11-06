@@ -7,10 +7,13 @@ class ProductForm(forms.Form):
     # ingredients = forms.ModelChoiceField(Ingredient.objects.all())
     # ingredients = Ingredient.objects.all()
 
-    def save(self, commit=True):
+    def save(self, ing_id, commit=True):
         p = Product()
-        p.name = self.cleaned_data['name']
-        p.save()
+        # p.name = self.cleaned_data['name']
+        # p.save()
+        # prd_ing = ProductIngredient()
+        # prd_ing.product = p
+        # prd_ing.ingredient = Ingredient.objects.get(id=ing_id)
         return p
 
 

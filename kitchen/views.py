@@ -28,9 +28,10 @@ def createsnack(request):
     data = dict()
     product_form = ProductForm(request.POST or None)
     snack_form = ProductIngredientForm(request.POST or None)
+    print(request.POST)
     if product_form.is_valid() and snack_form.is_valid():
-        p = product_form.save(request)
-        snack_form.save(p)
+        # p = product_form.save(request)
+        # snack_form.save(p)
         data['product_saved'] = True
         #return redirect('url_listagem')
 

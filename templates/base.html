@@ -28,8 +28,14 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav">
             <li class="nav-item {% is_active request 'kitchen_index' %}"><a class="nav-link" href="{% url 'kitchen_index'%}">Home</a></li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item {% is_active request 'kitchen_ingredient' %}"><a class="nav-link" href="{% url 'kitchen_ingredient'%}">Register Ingredient</a></li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item {% is_active request 'kitchen_create_snack' %}"><a class="nav-link" href="{% url 'kitchen_create_snack'%}">Create Snack</a></li>
         </ul>
     </div>
 </nav>
