@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import redirect, render, get_object_or_404, get_list_or_404
 from kitchen.models import Product, Ingredient, ProductIngredient
 from kitchen.form import ProductIngredientForm, ProductForm, IngredientForm
 
@@ -26,15 +26,13 @@ def ingredient(request):
 
 def createsnack(request):
     data = dict()
-    product_form = ProductForm(request.POST or None)
+
     snack_form = ProductIngredientForm(request.POST or None)
-    print(request.POST)
-    if product_form.is_valid() and snack_form.is_valid():
+    if snack_form.is_valid():
         # p = product_form.save(request)
         # snack_form.save(p)
-        data['product_saved'] = True
-        #return redirect('url_listagem')
+        data['snack_saved'] = True
+        # return redirect('url_listagem')
 
-    data['product_form'] = product_form
     data['snack_form'] = snack_form
     return render(request, 'kitchen/createsnack.html', data)
