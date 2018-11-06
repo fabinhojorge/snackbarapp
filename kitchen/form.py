@@ -2,25 +2,34 @@ from django import forms
 from kitchen.models import Product, Ingredient, ProductIngredient
 
 
-class ProductForm(forms.Form):
+class SnackForm(forms.Form):
     name = forms.CharField(label='Snack Name', max_length=100, required=False)
-    # ingredients = forms.ModelChoiceField(Ingredient.objects.all())
-    # ingredients = Ingredient.objects.all()
+    ingredients = forms.ModelChoiceField(Ingredient.objects.all())
+    amount = forms.DecimalField(label="Amount", max_digits=2, decimal_places=0)
 
-    def save(self, ing_id, commit=True):
+    # It´s expected that the ingredients and amount would be a pair.
+    # But for now we will not create the validator functions
+
+    def save(self, commit=True):
+        # Missing the validation function.
+
+        print(self.data)
+        data = dict(self.data)
+        print(data)
+        print(data['name'])
         p = Product()
-        # p.name = self.cleaned_data['name']
-        # p.save()
-        # prd_ing = ProductIngredient()
+        p.name = data['name'][0]
+        p.save()
+
+        ing_amount = zip(data['ingredients'], data['amount'])
+        for i in ing_amount:
+            prd_ing = ProductIngredient()
+            prd_ing.ingredient = Ingredient.objects.get(id=i[0])
+            prd_ing.product = p
+            prd_ing.amount = i[1]
+            prd_ing.save()
         # prd_ing.product = p
         # prd_ing.ingredient = Ingredient.objects.get(id=ing_id)
-        return p
-
-
-class ProductIngredientForm(forms.ModelForm):
-    class Meta:
-        model = ProductIngredient
-        fields = ['amount', 'ingredient']
 
 
 class IngredientForm(forms.ModelForm):

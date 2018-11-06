@@ -12,16 +12,24 @@
 
 {% block extrascript %}
 $("#alert-success").delay(3000).slideUp(200, function() {
-    $("#success-alert").slideUp(500);
+$("#success-alert").slideUp(500);
 });
+
+ing = $("#ing_form").children().clone()
+
+$("#add_ingredient").on('click', function(){
+    $("#ing_form").append(ing.clone())
+});
+
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% breadcrumb_url 'Home' 'kitchen_index' 'Create your Own Snack'%}
+{% breadcrumb_url 'Home' 'kitchen_index' 'Create your Own Snack'%}
 {% endblock %}
 
 
 {% block content %}
+
 
 
 <div class="col-md-9 col-lg-6" id="createsnack_form">
@@ -32,33 +40,58 @@ $("#alert-success").delay(3000).slideUp(200, function() {
             {% if snack_saved %}
             <div id="alert-success" class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Snack created with Success! Now wait for the Order :)</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             {% endif %}
 
-            <div id="ing_form">
-            {% for field in snack_form %}
+
             <div class="form-group">
-                {% if not field.errors%}
-                <label class="form-control-label">{{ field.label }}</label>
-                {{ field|add_class:"form-control" }}
+                {% if not snack_form.name.errors%}
+                <label class="form-control-label">{{ snack_form.name.label }}</label>
+                {{ snack_form.name|add_class:"form-control" }}
                 {% else %}
-                <label class="form-control-label text-danger">{{ field.label }}</label>
-                {{ field|add_class:"form-control is-invalid" }}
-                {% for error in field.errors %}
+                <label class="form-control-label text-danger">{{ snack_form.name.label }}</label>
+                {{ snack_form.name|add_class:"form-control is-invalid" }}
+                {% for error in snack_form.name.errors %}
                 <span class="badge badge-danger"> {{ error }} </span>
                 {% endfor %}
                 {% endif %}
             </div>
-            {% endfor %}
+
+
+            <button id="add_ingredient" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add ingredient</button>
+            <div class="form-group form-row" id="ing_form" >
+                <div class="col-md-6" >
+                    {% if not snack_form.ingredients.errors%}
+                    <label class="form-control-label">{{ snack_form.ingredients.label }}</label>
+                    {{ snack_form.ingredients|add_class:"form-control" }}
+                    {% else %}
+                    <label class="form-control-label text-danger">{{ snack_form.ingredients.label }}</label>
+                    {{ snack_form.ingredients|add_class:"form-control is-invalid" }}
+                    {% for error in snack_form.ingredients.errors %}
+                    <span class="badge badge-danger"> {{ error }} </span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {% if not snack_form.amount.errors%}
+                    <label class="form-control-label">{{ snack_form.amount.label }}</label>
+                    {{ snack_form.amount|add_class:"form-control" }}
+                    {% else %}
+                    <label class="form-control-label text-danger">{{ snack_form.amount.label }}</label>
+                    {{ snack_form.amount|add_class:"form-control is-invalid" }}
+                    {% for error in snack_form.amount.errors %}
+                    <span class="badge badge-danger"> {{ error }} </span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </fieldset>
     </form>
 </div>
-
 
 {% endblock %}

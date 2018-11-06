@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404, get_list_or_404
 from kitchen.models import Product, Ingredient, ProductIngredient
-from kitchen.form import ProductIngredientForm, ProductForm, IngredientForm
+from kitchen.form import SnackForm, IngredientForm
 
 
 def index(request):
@@ -17,7 +17,6 @@ def ingredient(request):
         form_ingredient.save()
         form_ingredient = IngredientForm()
         data['ingredient_saved'] = True
-        pass
 
     data['ingredient_form'] = form_ingredient
     data['ingredients'] = Ingredient.objects.all().order_by('-id')
@@ -27,10 +26,10 @@ def ingredient(request):
 def createsnack(request):
     data = dict()
 
-    snack_form = ProductIngredientForm(request.POST or None)
+    snack_form = SnackForm(request.POST or None)
     if snack_form.is_valid():
         # p = product_form.save(request)
-        # snack_form.save(p)
+        snack_form.save()
         data['snack_saved'] = True
         # return redirect('url_listagem')
 
