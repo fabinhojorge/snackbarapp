@@ -15,7 +15,8 @@ $("#alert-success").delay(3000).slideUp(200, function() {
 $("#success-alert").slideUp(500);
 });
 
-ing = $("#ing_form").children().clone()
+
+var ing = $("#ing_form").children().clone()
 
 $("#add_ingredient").on('click', function(){
     $("#ing_form").append(ing.clone())
@@ -62,30 +63,33 @@ $("#add_ingredient").on('click', function(){
 
 
             <button id="add_ingredient" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add ingredient</button>
-            <div class="form-group form-row" id="ing_form" >
-                <div class="col-md-6" >
-                    {% if not snack_form.ingredients.errors%}
-                    <label class="form-control-label">{{ snack_form.ingredients.label }}</label>
-                    {{ snack_form.ingredients|add_class:"form-control" }}
-                    {% else %}
-                    <label class="form-control-label text-danger">{{ snack_form.ingredients.label }}</label>
-                    {{ snack_form.ingredients|add_class:"form-control is-invalid" }}
-                    {% for error in snack_form.ingredients.errors %}
-                    <span class="badge badge-danger"> {{ error }} </span>
-                    {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="col-md-6">
-                    {% if not snack_form.amount.errors%}
-                    <label class="form-control-label">{{ snack_form.amount.label }}</label>
-                    {{ snack_form.amount|add_class:"form-control" }}
-                    {% else %}
-                    <label class="form-control-label text-danger">{{ snack_form.amount.label }}</label>
-                    {{ snack_form.amount|add_class:"form-control is-invalid" }}
-                    {% for error in snack_form.amount.errors %}
-                    <span class="badge badge-danger"> {{ error }} </span>
-                    {% endfor %}
-                    {% endif %}
+
+            <div class="form-group" id="ing_form">
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if not snack_form.ingredients.errors%}
+                        <label class="form-control-label">{{ snack_form.ingredients.label }}</label>
+                        {{ snack_form.ingredients|add_class:"form-control" }}
+                        {% else %}
+                        <label class="form-control-label text-danger">{{ snack_form.ingredients.label }}</label>
+                        {{ snack_form.ingredients|add_class:"form-control is-invalid" }}
+                        {% for error in snack_form.ingredients.errors %}
+                        <span class="badge badge-danger"> {{ error }} </span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        {% if not snack_form.amount.errors%}
+                        <label class="form-control-label">{{ snack_form.amount.label }}</label>
+                        {{ snack_form.amount|add_class:"form-control" }}
+                        {% else %}
+                        <label class="form-control-label text-danger">{{ snack_form.amount.label }}</label>
+                        {{ snack_form.amount|add_class:"form-control is-invalid" }}
+                        {% for error in snack_form.amount.errors %}
+                        <span class="badge badge-danger"> {{ error }} </span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
 

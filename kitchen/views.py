@@ -5,7 +5,7 @@ from kitchen.form import SnackForm, IngredientForm
 
 def index(request):
     data = dict()
-    data['snacks'] = get_list_or_404(Product)
+    data['snacks'] = Product.objects.all()
     return render(request, 'kitchen/index.html', data)
 
 
@@ -28,10 +28,8 @@ def createsnack(request):
 
     snack_form = SnackForm(request.POST or None)
     if snack_form.is_valid():
-        # p = product_form.save(request)
         snack_form.save()
         data['snack_saved'] = True
-        # return redirect('url_listagem')
 
     data['snack_form'] = snack_form
     return render(request, 'kitchen/createsnack.html', data)

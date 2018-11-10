@@ -1,9 +1,17 @@
+body{
+    height: 100%;
+}
+
 .content{
-    min-height: 500px;
+    min-height: 800px;
 }
 
 /* Overwrite .breadcrumb from Bootstrap*/
 
 .breadcrumb{
     background-color: #fff;
+}
+
+footer {
+
 }

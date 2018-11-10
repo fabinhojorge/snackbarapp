@@ -13,10 +13,8 @@ class SnackForm(forms.Form):
     def save(self, commit=True):
         # Missing the validation function.
 
-        print(self.data)
+
         data = dict(self.data)
-        print(data)
-        print(data['name'])
         p = Product()
         p.name = data['name'][0]
         p.save()
