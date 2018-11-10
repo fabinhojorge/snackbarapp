@@ -3,9 +3,9 @@ from kitchen.models import Product, Ingredient, ProductIngredient
 
 
 class SnackForm(forms.Form):
-    name = forms.CharField(label='Snack Name', max_length=100, required=False)
+    name = forms.CharField(label='Snack\'s Name', max_length=100, required=False)
     ingredients = forms.ModelChoiceField(Ingredient.objects.all())
-    amount = forms.DecimalField(label="Amount", max_digits=2, decimal_places=0)
+    amount = forms.DecimalField(label="Amount", max_digits=2, decimal_places=0, max_value=10, min_value=1)
 
     # It´s expected that the ingredients and amount would be a pair.
     # But for now we will not create the validator functions

@@ -64,9 +64,9 @@ $("#add_ingredient").on('click', function(){
 
             <button id="add_ingredient" type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add ingredient</button>
 
-            <div class="form-group" id="ing_form">
+            <div class="form-group col-sm-9" id="ing_form">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-sm-9">
                         {% if not snack_form.ingredients.errors%}
                         <label class="form-control-label">{{ snack_form.ingredients.label }}</label>
                         {{ snack_form.ingredients|add_class:"form-control" }}
@@ -78,7 +78,7 @@ $("#add_ingredient").on('click', function(){
                         {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-3">
                         {% if not snack_form.amount.errors%}
                         <label class="form-control-label">{{ snack_form.amount.label }}</label>
                         {{ snack_form.amount|add_class:"form-control" }}
