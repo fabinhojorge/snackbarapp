@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class Ingredient(models.Model):
@@ -24,7 +25,7 @@ class Product(models.Model):
     def __str__(self):
         return "Product {0:05d} {1} ".format(self.id, self.name)
 
-    class Promotion():
+    class Promotion:
         def __init__(self, ings):
             self.ings = ings
             self.promotion_list = [
@@ -36,7 +37,11 @@ class Product(models.Model):
             """"""
             ing_cheese = Ingredient.objects.get(name="Cheese")
             cheese_promotion_price = ing_cheese.price
-            quantity = self.ings.filter(ingredient=ing_cheese).get().amount
+
+            try:
+                quantity = self.ings.filter(ingredient=ing_cheese).get().amount
+            except ObjectDoesNotExist:
+                quantity = 0
 
             discount_amount = cheese_promotion_price * (quantity//3)
 
@@ -65,7 +70,7 @@ class Product(models.Model):
         discounts = 0
         promotion = self.Promotion(ings)
         discounts += promotion.get_discount_promotion()
-
+        print("name: {0} price: {1}".format(self.name, price_ings))
         final_price = price_ings - discounts
         return final_price
 
