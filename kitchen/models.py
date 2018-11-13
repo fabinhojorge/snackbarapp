@@ -37,7 +37,6 @@ class Product(models.Model):
             """"""
             ing_cheese = Ingredient.objects.get(name="Cheese")
             cheese_promotion_price = ing_cheese.price
-
             try:
                 quantity = self.ings.filter(ingredient=ing_cheese).get().amount
             except ObjectDoesNotExist:
@@ -51,7 +50,11 @@ class Product(models.Model):
             """"""
             ing_meat = Ingredient.objects.get(name="Hambuger")
             cheese_promotion_price = ing_meat.price
-            quantity = self.ings.filter(ingredient=ing_meat).get().amount
+            try:
+                quantity = self.ings.filter(ingredient=ing_meat).get().amount
+            except ObjectDoesNotExist:
+                quantity = 0
+
 
             discount_amount = cheese_promotion_price * (quantity//3)
 
