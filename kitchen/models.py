@@ -29,6 +29,7 @@ class Product(models.Model):
             self.ings = ings
             self.promotion_list = [
                 self.cheese_promotion,
+                self.meat_promotion,
             ]
 
         def cheese_promotion(self):
@@ -36,6 +37,16 @@ class Product(models.Model):
             ing_cheese = Ingredient.objects.get(name="Cheese")
             cheese_promotion_price = ing_cheese.price
             quantity = self.ings.filter(ingredient=ing_cheese).get().amount
+
+            discount_amount = cheese_promotion_price * (quantity//3)
+
+            return float(discount_amount)
+
+        def meat_promotion(self):
+            """"""
+            ing_meat = Ingredient.objects.get(name="Hambuger")
+            cheese_promotion_price = ing_meat.price
+            quantity = self.ings.filter(ingredient=ing_meat).get().amount
 
             discount_amount = cheese_promotion_price * (quantity//3)
 
