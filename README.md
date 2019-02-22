@@ -37,3 +37,18 @@ But, there are some __special__ conditions that can change the final price. It´
 
 # To Do
 [ ] ...
+
+
+## Screen Shots
+
+__Register the Ingredients__
+![Register the ingredients](project_assets/register_ingredient.jpg)
+
+
+__Home Page__
+![Home page](project_assets/home_page.jpg)
+
+
+__Request your Snack!__
+![Request snack](project_assets/request_snack.jpg)
+
